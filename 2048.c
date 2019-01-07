@@ -151,6 +151,7 @@ void merge(){
       break;
             
   }
+  fillGap();
 }
 
 // Function to print the matrix
@@ -181,6 +182,7 @@ int main()
   printMatrix();
   input();
   fillGap();
+  merge();
   printMatrix();
   return 0;
 }
