@@ -160,6 +160,31 @@ void merge()
   fillGap();
 }
 
+// Function to add a number (2 or 4) at a random empty place
+void addNewNum()
+{
+  int emptyPlaces[SIZE * SIZE][2], i, j, k = 0;
+
+  for (i = 0; i < SIZE; i++)
+    for (j = 0; j < SIZE; j++)
+      if (!matrix[i][j])
+      {
+        emptyPlaces[k][0] = i;
+        emptyPlaces[k][1] = j;
+        k++;
+      }
+
+  int r = rand() % k;
+
+  i = emptyPlaces[r][0];
+  j = emptyPlaces[r][1];
+
+  if (rand() % 10 < 1)
+    matrix[i][j] = 4; // 10 % probability for 4
+  else
+    matrix[i][j] = 2; // 90 % probability for 2
+}
+
 // Function to print the matrix
 void printMatrix()
 {
@@ -186,9 +211,13 @@ int main()
   srand(time(NULL));
   initMatrix();
   printMatrix();
-  input();
-  fillGap();
-  merge();
-  printMatrix();
+  while(1){
+    input();
+    fillGap();
+    merge();
+    addNewNum();
+    printMatrix();
+  }
+  
   return 0;
 }
