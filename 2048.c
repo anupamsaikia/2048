@@ -46,6 +46,43 @@ void input()
   }
 }
 
+void fillGap()
+{
+  int i, j, k;
+  switch (currentMove)
+  {
+  case 1:
+    for (i = 1; i < SIZE; i++)
+      for (j = 0; j < SIZE; j++)
+        if (matrix[i][j])
+        {
+          k = i - 1;
+          while (k >= 0 && matrix[k][j] == 0)
+          {
+            matrix[k][j] = matrix[k + 1][j];
+            matrix[k+1][j] = 0;
+            k--;
+          }
+        }
+
+  case 2:
+    for (i = 0; i < SIZE - 1; i++)
+      for (j = 0; j < SIZE; j++)
+        if (matrix[i][j])
+        {
+          k = i + 1;
+          while (k < SIZE && matrix[k][j] == 0)
+          {
+            matrix[k][j] = matrix[k - 1][j];
+            matrix[k-1][j] = 0;
+            k++;
+          }
+        }
+
+
+  }
+}
+
 // Function to print the matrix
 void printMatrix()
 {
