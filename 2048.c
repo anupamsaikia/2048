@@ -60,13 +60,14 @@ void fillGap()
           while (k >= 0 && matrix[k][j] == 0)
           {
             matrix[k][j] = matrix[k + 1][j];
-            matrix[k+1][j] = 0;
+            matrix[k + 1][j] = 0;
             k--;
           }
         }
+    break;
 
   case 2:
-    for (i = 0; i < SIZE - 1; i++)
+    for (i = SIZE - 2; i >=0; i--)
       for (j = 0; j < SIZE; j++)
         if (matrix[i][j])
         {
@@ -74,11 +75,41 @@ void fillGap()
           while (k < SIZE && matrix[k][j] == 0)
           {
             matrix[k][j] = matrix[k - 1][j];
-            matrix[k-1][j] = 0;
+            matrix[k - 1][j] = 0;
             k++;
           }
         }
+    break;
 
+  case 3:
+    for (i = 0; i < SIZE; i++)
+      for (j = 1; j < SIZE; j++)
+        if (matrix[i][j])
+        {
+          k = j - 1;
+          while (k >= 0 && matrix[i][k] == 0)
+          {
+            matrix[i][k] = matrix[i][k + 1];
+            matrix[i][k + 1] = 0;
+            k--;
+          }
+        }
+    break;
+
+  case 4:
+    for (i = 0; i < SIZE; i++)
+      for (j = SIZE -2; j >=0; j--)
+        if (matrix[i][j])
+        {
+          k = j + 1;
+          while (k < SIZE && matrix[i][k] == 0)
+          {
+            matrix[i][k] = matrix[i][k - 1];
+            matrix[i][k - 1] = 0;
+            k++;
+          }
+        }
+    break;
 
   }
 }
@@ -108,6 +139,9 @@ int main()
 {
   srand(time(NULL));
   initMatrix();
+  printMatrix();
+  input();
+  fillGap();
   printMatrix();
   return 0;
 }
