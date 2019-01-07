@@ -46,6 +46,7 @@ void input()
   }
 }
 
+// Function to fill the gaps according to the current move
 void fillGap()
 {
   int i, j, k;
@@ -67,7 +68,7 @@ void fillGap()
     break;
 
   case 2:
-    for (i = SIZE - 2; i >=0; i--)
+    for (i = SIZE - 2; i >= 0; i--)
       for (j = 0; j < SIZE; j++)
         if (matrix[i][j])
         {
@@ -98,7 +99,7 @@ void fillGap()
 
   case 4:
     for (i = 0; i < SIZE; i++)
-      for (j = SIZE -2; j >=0; j--)
+      for (j = SIZE - 2; j >= 0; j--)
         if (matrix[i][j])
         {
           k = j + 1;
@@ -110,46 +111,51 @@ void fillGap()
           }
         }
     break;
-
   }
 }
 
-void merge(){
+// Function to merge two adjacent numbers which are equal
+void merge()
+{
   int i, j, k;
-  switch (currentMove){
-    case 1:
-      for(i=1; i<SIZE; i++)
-        for(j=0; j<SIZE; j++)
-          if(matrix[i][j] && matrix[i][j] == matrix[i-1][j]){
-            matrix[i-1][j] += matrix[i][j];
-            matrix[i][j] = 0;
-          }
-      break;
-    case 2:
-      for(i=SIZE -2; i>=0; i--)
-        for(j=0; j<SIZE; j++)
-          if(matrix[i][j] && matrix[i][j] == matrix[i+1][j]){
-            matrix[i+1][j] += matrix[i][j];
-            matrix[i][j] = 0;
-          }
-      break;
-    case 3:
-      for(i=0; i<SIZE; i++)
-        for(j=1; j<SIZE; j++)
-          if(matrix[i][j] && matrix[i][j] == matrix[i][j-1]){
-            matrix[i][j-1] += matrix[i][j];
-            matrix[i][j] = 0;
-          }
-      break;
-    case 4:
-      for(i=0; i<SIZE; i++)
-        for(j=SIZE -2; j>=0; j--)
-          if(matrix[i][j] && matrix[i][j] == matrix[i][j+1]){
-            matrix[i][j+1] += matrix[i][j];
-            matrix[i][j] = 0;
-          }
-      break;
-            
+  switch (currentMove)
+  {
+  case 1:
+    for (i = 1; i < SIZE; i++)
+      for (j = 0; j < SIZE; j++)
+        if (matrix[i][j] && matrix[i][j] == matrix[i - 1][j])
+        {
+          matrix[i - 1][j] += matrix[i][j];
+          matrix[i][j] = 0;
+        }
+    break;
+  case 2:
+    for (i = SIZE - 2; i >= 0; i--)
+      for (j = 0; j < SIZE; j++)
+        if (matrix[i][j] && matrix[i][j] == matrix[i + 1][j])
+        {
+          matrix[i + 1][j] += matrix[i][j];
+          matrix[i][j] = 0;
+        }
+    break;
+  case 3:
+    for (i = 0; i < SIZE; i++)
+      for (j = 1; j < SIZE; j++)
+        if (matrix[i][j] && matrix[i][j] == matrix[i][j - 1])
+        {
+          matrix[i][j - 1] += matrix[i][j];
+          matrix[i][j] = 0;
+        }
+    break;
+  case 4:
+    for (i = 0; i < SIZE; i++)
+      for (j = SIZE - 2; j >= 0; j--)
+        if (matrix[i][j] && matrix[i][j] == matrix[i][j + 1])
+        {
+          matrix[i][j + 1] += matrix[i][j];
+          matrix[i][j] = 0;
+        }
+    break;
   }
   fillGap();
 }
