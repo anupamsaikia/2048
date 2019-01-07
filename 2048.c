@@ -5,6 +5,7 @@
 #define SIZE 4
 
 int matrix[SIZE][SIZE];
+int currentMove = 1; // 1=up, 2=down, 3=left, 4=right
 
 void initMatrix()
 {
@@ -23,25 +24,25 @@ void initMatrix()
 }
 
 // Function to take input from keyboard
-int input()
+void input()
 {
   char ch = getch();
   switch (ch)
   {
   case 'w':
-    return 1;
+    currentMove = 1;
     break;
   case 's':
-    return 2;
+    currentMove = 2;
     break;
   case 'a':
-    return 3;
+    currentMove = 3;
     break;
   case 'd':
-    return 4;
+    currentMove = 4;
     break;
   default:
-    return 1;
+    currentMove = 1;
   }
 }
 
