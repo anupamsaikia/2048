@@ -7,6 +7,7 @@
 int matrix[SIZE][SIZE];
 int pmatrix[SIZE][SIZE]; //to store previous state of the matrix
 int currentMove = 1;     // 1=up, 2=down, 3=left, 4=right
+int score = 0, points = 0;
 
 // Function to copy matrix to pmatrix
 void snapshot()
@@ -164,6 +165,7 @@ void fillGap()
 void merge()
 {
   int i, j, k;
+  points = 0;
   switch (currentMove)
   {
   case 1:
@@ -173,6 +175,7 @@ void merge()
         {
           matrix[i - 1][j] += matrix[i][j];
           matrix[i][j] = 0;
+          points += matrix[i - 1][j];
         }
     break;
   case 2:
@@ -182,6 +185,7 @@ void merge()
         {
           matrix[i + 1][j] += matrix[i][j];
           matrix[i][j] = 0;
+          points += matrix[i + 1][j];
         }
     break;
   case 3:
@@ -191,6 +195,7 @@ void merge()
         {
           matrix[i][j - 1] += matrix[i][j];
           matrix[i][j] = 0;
+          points += matrix[i][j - 1];
         }
     break;
   case 4:
@@ -200,9 +205,11 @@ void merge()
         {
           matrix[i][j + 1] += matrix[i][j];
           matrix[i][j] = 0;
+          points += matrix[i][j + 1];
         }
     break;
   }
+  score += points;
   fillGap();
 }
 
