@@ -71,25 +71,21 @@ int isMergePossible()
 }
 
 // Function to take input from keyboard
-void input()
+int getInput()
 {
   char ch = getch();
   switch (ch)
   {
   case 'w':
-    currentMove = 1;
-    break;
+    return 1;
   case 's':
-    currentMove = 2;
-    break;
+    return 2;
   case 'a':
-    currentMove = 3;
-    break;
+    return 3;
   case 'd':
-    currentMove = 4;
-    break;
+    return 4;
   default:
-    currentMove = 1;
+    getInput();
   }
 }
 
