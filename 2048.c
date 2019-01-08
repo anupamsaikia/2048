@@ -45,6 +45,17 @@ int isChanged()
   return 0;
 }
 
+int isFull(){
+  int i, j;
+  for (i = 0; i < SIZE; i++)
+    for (j = 0; j < SIZE; j++)
+      if (matrix[i][j] == 0)
+      {
+        return 0;
+      }
+  return 1;
+}
+
 // Function to take input from keyboard
 void input()
 {
