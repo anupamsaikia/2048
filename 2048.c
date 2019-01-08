@@ -6,13 +6,14 @@
 
 int matrix[SIZE][SIZE];
 int pmatrix[SIZE][SIZE]; //to store previous state of the matrix
-int currentMove = 1; // 1=up, 2=down, 3=left, 4=right
+int currentMove = 1;     // 1=up, 2=down, 3=left, 4=right
 
 // Function to copy matrix to pmatrix
-void snapshot(){
-  int i,j;
-  for(i=0;i<SIZE;i++)
-    for(j=0;j<SIZE;j++)
+void snapshot()
+{
+  int i, j;
+  for (i = 0; i < SIZE; i++)
+    for (j = 0; j < SIZE; j++)
       pmatrix[i][j] = matrix[i][j];
 }
 
@@ -30,6 +31,18 @@ void initMatrix()
   i = rand() % 4;
   j = rand() % 4;
   matrix[i][j] = 2;
+}
+
+int isChanged()
+{
+  int i, j;
+  for (i = 0; i < SIZE; i++)
+    for (j = 0; j < SIZE; j++)
+      if (pmatrix[i][j] != matrix[i][j])
+      {
+        return 1;
+      }
+  return 0;
 }
 
 // Function to take input from keyboard
@@ -220,13 +233,14 @@ int main()
   srand(time(NULL));
   initMatrix();
   printMatrix();
-  while(1){
+  while (1)
+  {
     input();
     fillGap();
     merge();
     addNewNum();
     printMatrix();
   }
-  
+
   return 0;
 }
