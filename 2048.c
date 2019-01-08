@@ -59,14 +59,18 @@ int isFull()
 
 int isMergePossible()
 {
-  int i, j;
-  for (i = 0; i < SIZE - 1; i++)
+  int i, j, r = 0;
+  for (i = 0; i < SIZE; i++)
     for (j = 0; j < SIZE - 1; j++)
-      if (matrix[i][j] == matrix[i + 1][j] || matrix[i][j] == matrix[i][j + 1])
-      {
-        return 1;
-      }
-  return 0;
+      if (matrix[i][j] == matrix[i][j + 1])
+        r = 1;
+
+  for (i = 0; i < SIZE - 1; i++)
+    for (j = 0; j < SIZE; j++)
+      if (matrix[i][j] == matrix[i + 1][j])
+        r = 1;
+
+  return r;
 }
 
 // Function to take input from keyboard
@@ -283,11 +287,10 @@ int main()
         addNewNum();
 
       printMatrix();
-      
+
       if (isFull() && !isMergePossible())
         break;
     }
-
 
   } while (i);
 
