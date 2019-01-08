@@ -74,19 +74,25 @@ int isMergePossible()
 int getInput()
 {
   char ch = getch();
+  int r;
   switch (ch)
   {
   case 'w':
-    return 1;
+    r = 1;
+    break;
   case 's':
-    return 2;
+    r = 2;
+    break;
   case 'a':
-    return 3;
+    r = 3;
+    break;
   case 'd':
-    return 4;
+    r = 4;
+    break;
   default:
-    getInput();
+    r = getInput();
   }
+  return r;
 }
 
 // Function to fill the gaps according to the current move
@@ -262,7 +268,7 @@ int main()
   printMatrix();
   while (1)
   {
-    input();
+    getInput();
     fillGap();
     merge();
     addNewNum();
