@@ -6,7 +6,6 @@
 
 int matrix[SIZE][SIZE];
 int pmatrix[SIZE][SIZE]; //to store previous state of the matrix
-int currentMove = 1;     // 1=up, 2=down, 3=left, 4=right
 int score = 0, points = 0;
 
 // Function to copy matrix to pmatrix
@@ -89,6 +88,9 @@ int getInput()
   case 'd':
     r = 4;
     break;
+  case 'q':
+    r = 0;
+    break;
   default:
     r = getInput();
   }
@@ -96,7 +98,7 @@ int getInput()
 }
 
 // Function to fill the gaps according to the current move
-void fillGap()
+void fillGap(int currentMove)
 {
   int i, j, k;
   switch (currentMove)
@@ -164,7 +166,7 @@ void fillGap()
 }
 
 // Function to merge two adjacent numbers which are equal
-void merge()
+void merge(int currentMove)
 {
   int i, j, k;
   points = 0;
@@ -212,7 +214,7 @@ void merge()
     break;
   }
   score += points;
-  fillGap();
+  fillGap(currentMove);
 }
 
 // Function to add a number (2 or 4) at a random empty place
@@ -266,14 +268,32 @@ int main()
   srand(time(NULL));
   initMatrix();
   printMatrix();
-  while (1)
+  int i;
+  do
   {
-    getInput();
-    fillGap();
-    merge();
-    addNewNum();
+    i = getInput();
+
+    if (i > 0 && i <= 4)
+    {
+      snapshot();
+      fillGap(i);
+      merge(i);
+
+      if (!isFull())
+      {
+        if (isChanged())
+          addNewNum();
+      }
+      else
+      {
+        if (!isMergePossible())
+          break;
+      }
+    }
+
     printMatrix();
-  }
+
+  } while (i);
 
   return 0;
 }
