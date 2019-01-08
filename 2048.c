@@ -5,7 +5,16 @@
 #define SIZE 4
 
 int matrix[SIZE][SIZE];
+int pmatrix[SIZE][SIZE]; //to store previous state of the matrix
 int currentMove = 1; // 1=up, 2=down, 3=left, 4=right
+
+// Function to copy matrix to pmatrix
+void snapshot(){
+  int i,j;
+  for(i=0;i<SIZE;i++)
+    for(j=0;j<SIZE;j++)
+      pmatrix[i][j] = matrix[i][j];
+}
 
 void initMatrix()
 {
