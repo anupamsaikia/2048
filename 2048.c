@@ -45,7 +45,8 @@ int isChanged()
   return 0;
 }
 
-int isFull(){
+int isFull()
+{
   int i, j;
   for (i = 0; i < SIZE; i++)
     for (j = 0; j < SIZE; j++)
@@ -54,6 +55,18 @@ int isFull(){
         return 0;
       }
   return 1;
+}
+
+int isMergePossible()
+{
+  int i, j;
+  for (i = 0; i < SIZE - 1; i++)
+    for (j = 0; j < SIZE - 1; j++)
+      if (matrix[i][j] == matrix[i + 1][j] || matrix[i][j] == matrix[i][j + 1])
+      {
+        return 1;
+      }
+  return 0;
 }
 
 // Function to take input from keyboard
