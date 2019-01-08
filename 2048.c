@@ -279,19 +279,15 @@ int main()
       fillGap(i);
       score += merge(i);
 
-      if (!isFull())
-      {
-        if (isChanged())
-          addNewNum();
-      }
-      else
-      {
-        if (!isMergePossible())
-          break;
-      }
+      if (!isFull() && isChanged())
+        addNewNum();
+
+      printMatrix();
+      
+      if (isFull() && !isMergePossible())
+        break;
     }
 
-    printMatrix();
 
   } while (i);
 
